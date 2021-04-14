@@ -1,0 +1,28 @@
+.social {
+    text-align: center;
+}
+
+#google_login {
+    background: #ff0000;
+    color: #fff;
+    padding: 1.3rem 5.5rem;
+    margin: 1rem;
+    font-size: 2rem;
+    border-radius: 10px;
+}
+
+#google_login:hover {
+    background: #191970;
+}
+
+#facebook_login {
+    background: dodgerblue;
+    color: #fff;
+    padding: 1.3rem 5.5rem;
+    font-size: 2rem;
+    border-radius: 10px;
+}
+
+#facebook_login:hover {
+    background: #191970;
+}

@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center text-primary p-5">Đăng nhập ADMIN</h1>
+        <form action="" (submit)="onLogin($event)" [formGroup]="userLogin">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" formControlName="email">
+            </div>
+            <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.email.errors?.required">
+                    Email không được để trống!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="pá
+                " class="form-control" name="password" formControlName="password">
+            </div>
+            <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.password.errors?.required">
+                    Password không được để trống!
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>

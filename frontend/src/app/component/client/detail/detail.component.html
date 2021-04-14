@@ -1,0 +1,56 @@
+<div class="container bootdey">
+    <div class="col-md-12">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="pro-img-details">
+                        <img [src]="book.avatar" alt="">
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <h4 class="pro-d-title">
+                        <h2>{{book.name}}</h2>
+                    </h4>
+                    <p [innerHTML]="book.des_short">
+                        {{book.des_short}}
+                    </p>
+                    <div class="product_meta">
+                        <span class="posted_in"> <strong>Danh mục:</strong> <a rel="tag" href="#" *ngFor="let x of book.categories"> {{x.name}}</a></span>
+                        <span class="tagged_as"><strong>Tác gỉa:</strong> <a rel="tag" href="#" *ngFor="let x of book.authors"> {{x.name}}</a></span>
+                    </div>
+                    <div class="m-bot15"> <strong>Price : </strong><span class="pro-price"> {{book.price | currency: 'VND'}}</span></div>
+                    <hr>
+                    <p [innerHTML]="book.des_detail">
+                        {{book.des_detail}}
+                    </p>
+                    <!-- <p>
+                        <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    </p> -->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<h2>Các cuốn sách liên quan cùng danh mục. => có {{sameBook.length}} quyển sách</h2>
+<div class="row">
+    <div class="col">
+        <div *ngFor="let item of sameBook" class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">{{item.name}}</strong>
+                <h3 class="mb-0">
+                    <a class="text-dark">Giá: {{item.price | currency: 'VND'}}</a>
+                </h3>
+                <div class="mb-1 text-muted">Ngày đăng: {{item.createdAt | date}} </div>
+                <p class="text-primary" *ngFor="let x of item.authors">Tác Giả: {{x.name}}</p>
+                <p class="text-danger" *ngFor="let x of item.categories">Danh Mục: {{x.name}}</p>
+
+                <p class="card-text mb-auto" [innerHTML]="item.des_short">{{item.des_short}}</p>
+                <br/>
+                <a href="javascript:;" routerLink="/detail/{{item._id}}">Chi tiết sách >></a>
+            </div>
+            <img height="270" width="250" src="{{item.avatar}}" alt="">
+        </div>
+    </div>
+</div>

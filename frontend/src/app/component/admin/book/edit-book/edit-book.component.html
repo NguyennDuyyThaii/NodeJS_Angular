@@ -1,0 +1,107 @@
+<div class="row">
+    <!-- {{editBookForm.value | json}} -->
+    <div class="col-6 offset-3">
+        <h1 class="text-center text-primary">Sửa Sách</h1>
+        <form action="" (submit)="submitForm($event)" [formGroup]="editBookForm">
+            <div class="form-group">
+                <label for="author">Tên Sách</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.name.errors?.required">
+                    Tên sách không được để trống!
+                </div>
+                <div *ngIf="f.name.errors?.minlength">
+                    Tên sách tối thiếu có ít nhất 5 kí tự
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author">Giá Sách</label>
+                <input type="text" class="form-control" formControlName="price">
+            </div>
+            <div *ngIf="f.price.invalid && (f.price.dirty || f.price.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.price.errors?.required">
+                    Không được để trống giá sách!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author">Hình Ảnh</label>
+                <input type="file" class="form-control" formControlName="avatar" (change)="onImage($event)">
+            </div>
+            <div class="form-group image-preview" *ngIf="imagePreview !== '' && imagePreview">
+                <img [src]="imagePreview">
+            </div>
+            <div *ngIf="f.avatar.invalid && (f.avatar.dirty || f.avatar.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.avatar.errors?.required">
+                    Không được để trống ảnh sách!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author">Tác Giả</label>
+                <select class="form-select" class="form-control" formControlName="author_id" aria-label="Default select example">
+                    <option *ngFor="let item of authorList" [value]="item._id">{{item.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="f.author_id.invalid && (f.author_id.dirty || f.author_id.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.author_id.errors?.required">
+                    Bạn phải chọn tác giả!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author">Danh Mục</label>
+                <select class="form-select" class="form-control" formControlName="cate_id" aria-label="Default select example">
+                    <option *ngFor="let item of categoryList" [value]="item._id">{{item.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="f.cate_id.invalid && (f.cate_id.dirty || f.cate_id.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.cate_id.errors?.required">
+                    Bạn phải chọn danh mục!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Miêu tả ngắn</label>
+                <angular-editor name="des_short" formControlName="des_short" [config]="config"></angular-editor>
+            </div>
+            <div *ngIf="f.des_short.invalid && (f.des_short.dirty || f.des_short.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.des_short.errors?.required">
+                    Miêu tả ngắn không được để trống!
+                </div>
+                <div *ngIf="f.des_short.errors?.minlength">
+                    Miêu tả ngắn ít nhất phải có 20 kí tự trở lên!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Nội dung</label>
+                <angular-editor name="des_detail" formControlName="des_detail" [config]="config"></angular-editor>
+            </div>
+            <div *ngIf="f.des_detail.invalid && (f.des_detail.dirty || f.des_detail.touched)" class="alert alert-danger">
+
+                <div *ngIf="f.des_detail.errors?.required">
+                    Nội dung quyển sách không được để trống!
+                </div>
+                <div *ngIf="f.des_detail.errors?.minlength">
+                    Nội dung quyển sách ít nhất phải có 50 kí tự!
+                </div>
+            </div>
+            <!-- <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
+                class="alert alert-danger">
+
+                <div *ngIf="f.name.errors?.required">
+                    Name is required.
+                </div>
+                <div *ngIf="f.name.errors?.minlength">
+                    Name must be at least 4 characters long.
+                </div>
+            </div> -->
+            <div class="text-center">
+                <button [disabled]="editBookForm.invalid" type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>

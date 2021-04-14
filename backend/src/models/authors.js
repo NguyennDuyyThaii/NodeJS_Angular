@@ -13,6 +13,15 @@ authorSchema.statics = {
     },
     listAll() {
         return this.find()
+    },
+    removeAuthor(id) {
+        return this.findByIdAndRemove({ "_id": id }).exec()
+    },
+    findAuthorById(id) {
+        return this.findByIdAndUpdate({ "_id": id }).exec()
+    },
+    updateAuthor(id, item) {
+        return this.updateOne({ "_id": id }, item).exec()
     }
 }
 module.exports = mongoose.model("author", authorSchema)

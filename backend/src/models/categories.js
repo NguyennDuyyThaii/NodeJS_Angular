@@ -13,6 +13,15 @@ categorySchema.statics = {
     },
     listAll() {
         return this.find()
+    },
+    removeCategory(id) {
+        return this.findByIdAndRemove({ "_id": id }).exec()
+    },
+    findCategoryById(id) {
+        return this.findByIdAndUpdate({ "_id": id }).exec()
+    },
+    updateCategory(id, item) {
+        return this.updateOne({ "_id": id }, item).exec()
     }
 }
 

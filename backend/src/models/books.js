@@ -4,9 +4,8 @@ let Shema = mongoose.Schema
 
 let bookSchema = new Shema({
     name: String,
-    avatar: { type: String, default: null },
-    images: { type: Array, default: null },
-    price: { type: Number },
+    avatar: String,
+    price: String,
     des_short: String,
     des_detail: String,
     cate_id: {
@@ -38,7 +37,16 @@ bookSchema.statics = {
         return this.create(item)
     },
     listAll() {
-        return this.find().populate("categories").populate("authors")
+        return this.find().populate("categories").populate("authors").exec()
+    },
+    removeBook(id) {
+        return this.findByIdAndRemove({ "_id": id }).exec()
+    },
+    findBookById(id) {
+        return this.findByIdAndUpdate({ "_id": id }).exec()
+    },
+    updateBook(id, item) {
+        return this.updateOne({ "_id": id }, item).exec()
     }
 }
 module.exports = mongoose.model("book", bookSchema)

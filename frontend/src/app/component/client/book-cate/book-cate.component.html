@@ -1,0 +1,21 @@
+<h2>Có tổng cộng {{length}} sách thuộc danh mục này!</h2>
+<div class="row">
+    <div class="col">
+        <div *ngFor="let item of bookList" class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">{{item.name}}</strong>
+                <h3 class="mb-0">
+                    <a class="text-dark">Giá: {{item.price | currency: 'VND'}}</a>
+                </h3>
+                <div class="mb-1 text-muted">Ngày đăng: {{item.createdAt | date}} </div>
+                <p class="text-primary" *ngFor="let x of item.authors">Tác Giả: {{x.name}}</p>
+                <p class="text-danger" *ngFor="let x of item.categories">Danh Mục: {{x.name}}</p>
+
+                <p class="card-text mb-auto" [innerHTML]="item.des_short">{{item.des_short}}</p>
+                <br/>
+                <a href="javascript:;" routerLink="/detail/{{item._id}}">Chi tiết sách >></a>
+            </div>
+            <img height="270" width="250" src="{{item.avatar}}" alt="">
+        </div>
+    </div>
+</div>

@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema
 
 let userSchema = new Schema({
-    name: String,
-    local: {
-        email: { type: String, trim: true },
-        password: String,
-        isActive: { type: Boolean, default: false },
-        verifyToken: String
-    },
+    email: { type: String, trim: true },
+    password: String,
+    // name: String,
+    // local: {
+    //     email: { type: String, trim: true },
+    //     password: String,
+    //     isActive: { type: Boolean, default: false },
+    //     verifyToken: String
+    // },
     createdAt: { type: String, default: Date.now },
     updatedAt: { type: String, default: Date.now }
 })

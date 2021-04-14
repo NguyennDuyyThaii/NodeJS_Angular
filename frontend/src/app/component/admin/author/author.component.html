@@ -1,0 +1,22 @@
+<h1 class="text-center text-primary">Quản lý Tác Giả</h1><br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên Tác Giả</th>
+            <th scope="col">
+                <a href="javascript:;" class="btn btn-success" routerLink="add">Thêm tác giả</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of authorList">
+            <th scope="row">{{item._id}}</th>
+            <td>{{item.name | titlecase}}</td>
+            <td>
+                <button class="btn btn-info" routerLink="/admin/author/edit/{{item._id}}">Sửa</button>
+                <button class="btn btn-danger" (click)="deleteAuthor(item._id)">Xóa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
