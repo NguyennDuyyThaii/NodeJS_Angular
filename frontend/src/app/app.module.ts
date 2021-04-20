@@ -20,13 +20,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-import {AuthInterceptor} from './auth';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FlashMessagesModule } from 'flash-messages-angular';
 import { DetailComponent } from './component/client/detail/detail.component';
 import { BookCateComponent } from './component/client/book-cate/book-cate.component';
 import { ListComponent } from './component/client/list/list.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +56,10 @@ import { ListComponent } from './component/client/list/list.component';
     BrowserAnimationsModule,
     MatPaginatorModule,
     AngularEditorModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    Ng2SearchPipeModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

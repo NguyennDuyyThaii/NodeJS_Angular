@@ -9,6 +9,7 @@ import { FlashMessagesService } from 'flash-messages-angular';
 })
 export class AuthorComponent implements OnInit {
   authorList: any;
+  length: any;
   constructor(
     private authorService: AuthorService,
     private router: Router,
@@ -18,6 +19,7 @@ export class AuthorComponent implements OnInit {
   ngOnInit(){
     this.authorService.getAllAuthors().subscribe(data => {
       this.authorList = data;
+      this.length = this.authorList.length;
     })
   }
   deleteAuthor(authorId: string){

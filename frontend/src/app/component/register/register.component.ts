@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
     formData.append("email", this.addUser.value.email)
     formData.append("password", this.addUser.value.password)
     this.userService.addUser(userData).subscribe(data => {
-      console.log(data)
       this.router.navigate(["/login"])
     })
   }

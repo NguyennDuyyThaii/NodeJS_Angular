@@ -9,6 +9,7 @@ import { FlashMessagesService } from 'flash-messages-angular';
 })
 export class CategoryComponent implements OnInit {
   cateList: any;
+  length: any;
   router;
   constructor(private categoryService : CategoryService,  private _flashMessagesService: FlashMessagesService) { 
   }
@@ -17,6 +18,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit(){
     this.categoryService.getAllCategories().subscribe(data => {
       this.cateList = data;
+      this.length  = this.cateList.length;
     })
   }
   deleteCategory(categoryId: string){

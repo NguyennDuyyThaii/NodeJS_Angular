@@ -12,7 +12,22 @@ categorySchema.statics = {
         return this.create(item)
     },
     listAll() {
-        return this.find()
+        return this.aggregate([{
+                $lookup: {
+                    from: 'books',
+                    localField: "_id",
+                    foreignField: "cate_id",
+                    as: 'books'
+                }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    name: 1,
+                    number_of_books: { $size: "$books" }
+                }
+            }
+        ])
     },
     removeCategory(id) {
         return this.findByIdAndRemove({ "_id": id }).exec()

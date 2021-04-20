@@ -1,10 +1,10 @@
-const { author, book, category, user, site } = require("./../controllers/index")
+const { author, book, category, user, site, passport } = require("./../controllers/index")
 const uploadFileMiddleware = require("./../middleware/uploadBook")
-const { registerValidation } = require("./../validation/registerValidation")
 const express = require("express")
 const router = express.Router()
-const checkLogin = require("./../middleware/check")
-
+    // const jwt = require("jsonwebtoken")
+    // const Passport = require("passport")
+    // passport.initPassportLocal()
 let initRouter = (app) => {
 
     // author
@@ -29,6 +29,10 @@ let initRouter = (app) => {
 
     router.post('/register', user.postRegister)
     router.post('/login', user.postLogin)
+        // router.post('/login', Passport.authenticate("local", {
+        //         successRedirect: "/admin",
+        //         failureRedirect: "/",
+        //     }))
         // site
     router.get('/', site.getHome)
     router.get('/category/:id', site.getCateBook)

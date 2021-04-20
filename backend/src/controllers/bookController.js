@@ -6,8 +6,8 @@ let getBook = async(req, res) => {
     let pageSize = +req.query.pagesize
     let currentPage = +req.query.page || 1
     let keyword = req.query.keyword
-    let books = await bookModel.find({ name: { $regex: keyword, $options: 'i' } }).skip(pageSize * (currentPage - 1)).limit(pageSize).populate("categories").populate("authors")
-    res.json(JSON.parse(JSON.stringify(books)))
+    let books = await bookModel.find({ name: { "$regex": new RegExp(keyword, "i") } }).skip(pageSize * (currentPage - 1)).limit(pageSize).populate("categories").populate("authors")
+    res.json(books)
 }
 let getDelete = async(req, res) => {
     await bookModel.removeBook(req.params.id)

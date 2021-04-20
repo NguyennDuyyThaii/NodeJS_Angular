@@ -1,16 +1,19 @@
 const authorModel = require("./../models/authors")
 const bookModel = require("./../models/books")
 let getAuthor = async(req, res) => {
-    let authors = await authorModel.listAll()
-    res.json(authors)
+    await authorModel.listAll().exec(function(err, result) {
+        if (err) throw err;
+        res.json(result)
+    });
 }
 
 let getDelete = async(req, res) => {
+    // b1. Tìm tất cả sách thuộc danh mục
     await authorModel.removeAuthor(req.params.id)
-        .then(result => {
-            //console.log(result)
-            res.json({ message: "Post deleted" })
-        })
+    await bookModel.remove().where({ "author_id": req.params.id }).exec()
+    res.json({ message: "Post deleted" })
+
+
 }
 let postAuthor = async(req, res) => {
     let item = req.body

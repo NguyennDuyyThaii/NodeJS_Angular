@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-6 offset-3">
         <h1 class="text-center text-primary p-5">Đăng nhập ADMIN</h1>
-        <form action="" (submit)="onLogin($event)" [formGroup]="userLogin">
+        <form action="" [formGroup]="userLogin">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" name="email" formControlName="email">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="button" (click)="login()" class="btn btn-primary">Lưu</button>
             </div>
         </form>
     </div>

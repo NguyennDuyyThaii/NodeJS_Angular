@@ -9,7 +9,7 @@ import { ClientService } from 'src/app/service/client.service';
 export class ListComponent implements OnInit {
   bookList: any;
   totalBooks = 20;
-  bookPerPage = 3;
+  bookPerPage = 5;
   currentPage = 1;
   pageSizeOptions = [1,2,5,10];
   constructor(

@@ -35,13 +35,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  onLogin(event){
-    event.preventDefault();
-    let userData = {
-      email: this.userLogin.value.email,
-      password: this.userLogin.value.password
+  login(){
+    console.log(this.userLogin.value)
+    if(this.userLogin.valid){
+      this.userService.login(this.userLogin.value).subscribe(data => {
+      
+        localStorage.setItem('token', data.toString())
+        this.router.navigate(["/admin"])
+      })
     }
-    this.userService.login(userData)
   }
+
 }
  

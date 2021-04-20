@@ -5,7 +5,7 @@ let getHome = async(req, res) => {
     let keyword = req.query.keyword
     let pageSize = +req.query.pagesize
     let currentPage = +req.query.page || 1
-    let book = await bookModel.find({ name: { $regex: keyword, $options: 'i' } }).skip(pageSize * (currentPage - 1)).limit(pageSize).populate("categories").populate("authors")
+    let book = await bookModel.find({ name: { "$regex": new RegExp(keyword, "i") } }).skip(pageSize * (currentPage - 1)).limit(pageSize).populate("categories").populate("authors")
     res.json({
         book: book,
         category: category

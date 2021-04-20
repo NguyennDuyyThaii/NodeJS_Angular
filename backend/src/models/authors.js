@@ -12,7 +12,22 @@ authorSchema.statics = {
         return this.create(item)
     },
     listAll() {
-        return this.find()
+        return this.aggregate([{
+                $lookup: {
+                    from: 'books',
+                    localField: "_id",
+                    foreignField: "author_id",
+                    as: 'books'
+                }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    name: 1,
+                    number_of_books: { $size: "$books" }
+                }
+            }
+        ])
     },
     removeAuthor(id) {
         return this.findByIdAndRemove({ "_id": id }).exec()
@@ -22,6 +37,7 @@ authorSchema.statics = {
     },
     updateAuthor(id, item) {
         return this.updateOne({ "_id": id }, item).exec()
-    }
+    },
+
 }
 module.exports = mongoose.model("author", authorSchema)

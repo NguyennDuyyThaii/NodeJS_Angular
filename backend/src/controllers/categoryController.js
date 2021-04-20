@@ -1,14 +1,18 @@
 const categoryModel = require("./../models/categories")
+const bookModel = require("./../models/books")
 let getCategory = async(req, res) => {
-    let categories = await categoryModel.listAll()
-    res.json(categories)
+    //let categories = await categoryModel.listAll()
+    await categoryModel.listAll().exec(function(err, result) {
+        if (err) throw err;
+        res.json(result)
+    });
+
 }
 let getDelete = async(req, res) => {
     await categoryModel.removeCategory(req.params.id)
-        .then(result => {
-            //console.log(result)
-            res.json({ message: "Post deleted" })
-        })
+    await bookModel.remove().where({ "cate_id": req.params.id }).exec()
+    res.json({ message: "Post deleted" })
+
 }
 let postCategory = async(req, res) => {
     let item = req.body
